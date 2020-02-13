@@ -3,20 +3,19 @@ function clients_slider_func($atts, $content = null){
   $r = '';
   extract( shortcode_atts( array(
     'slides' => null,
+    'dis' => null,
   ), $atts ) );
   ob_start(); 
   $imgIds = get_post_meta($slides,'slider_images')[0];
   $numIds = count($imgIds);
-  $divFour = true;
-  if ($numIds % 4 == 0) {
-    $s_count = $numIds/4;
-  }else{
-    $s_count = ceil($numIds/4);
-    $divFour = false;
-  }
-  var_dump($s_count);
   $first = true;
+  $norep = true;
   $count = 0;
+  if (!is_numeric($dis) || $dis < 1) {
+    $dis = 2;
+  }else{
+    $dis -= 2;
+  } 
   ?>
 
   <section class="clients">
@@ -38,14 +37,24 @@ function clients_slider_func($atts, $content = null){
                       </div>
                   </div>
                 </div>
-              <?php $first = $i > 2 ? false : true; } ?>
+              <?php 
+                if ($dis == -1) {
+                  $first = false;
+                } else{
+                  $first = $i > $dis ? false : true;
+                }
+                if (!$first && $norep) {
+                  $noslide = $i + 1;
+                  $norep = false;
+                }} 
+              ?>
             </div>
-            <?php if ($numIds > 4) { ?>
-              <a class="carousel-control-prev" href="#clients_slider" role="button" data-slide="prev">
+            <?php if ($numIds > $noslide && $numIds > $dis) { ?>
+              <a class="carousel-control-prev carousel-button" href="#clients_slider" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true" style="background-image: url(<?php echo get_theme_file_uri('img/prev.png') ?>)"></span>
                 <span class="sr-only">Previous</span>
               </a>
-              <a class="carousel-control-next" href="#clients_slider" role="button" data-slide="next">
+              <a class="carousel-control-next carousel-button" href="#clients_slider" role="button" data-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true" style="background-image: url(<?php echo get_theme_file_uri('img/next.png') ?>)"></span>
                 <span class="sr-only">Next</span>
               </a>
@@ -75,6 +84,13 @@ function clients_slider_map()
       'heading' => __( 'Choose Slider', 'my-text-domain' ),
       'param_name' => 'slides',
       'value' => all_sliders(),
+    ),
+    array(
+      'type' => 'textfield',
+      'holder' => 'p',
+      'heading' => __( 'Display Amount', 'my-text-domain' ),
+      'description' => __( 'Default is four', 'my-text-domain' ),
+      'param_name' => 'dis',
     ),
     array(
       'type' => 'textarea_html',
