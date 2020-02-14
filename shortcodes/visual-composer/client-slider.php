@@ -29,25 +29,27 @@ function clients_slider_func($atts, $content = null){
         <div class="col-xl-8 p-0">
           <div id="clients_slider" class="k-carousel slide">
             <div class="carousel-inner">
-              <?php for ($i=0; $i <= $numIds - 1 ; $i++) {  ?>
-                <div class="carousel-item<?php echo $first ? ' active' : '' ?>" data-count="<?php echo $count++ ?>">
-                  <div class="inner-wrapper">
-                      <div class="image-wrapper" style="background-image: url(<?php echo wp_get_attachment_image_url($imgIds[$i], 'full') ?>)">
-                        <!-- <?php echo wp_get_attachment_image($imgIds[$i], 'medium'); ?> -->
-                      </div>
+              <div class="items-wrapper">
+                <?php for ($i=0; $i <= $numIds - 1 ; $i++) {  ?>
+                  <div class="carousel-item<?php echo $first ? ' active' : '' ?>" data-count="<?php echo $count++ ?>">
+                    <div class="inner-wrapper">
+                        <div class="image-wrapper" style="background-image: url(<?php echo wp_get_attachment_image_url($imgIds[$i], 'full') ?>)">
+                          <!-- <?php echo wp_get_attachment_image($imgIds[$i], 'medium'); ?> -->
+                        </div>
+                    </div>
                   </div>
-                </div>
-              <?php 
-                if ($dis == -1) {
-                  $first = false;
-                } else{
-                  $first = $i > $dis ? false : true;
-                }
-                if (!$first && $norep) {
-                  $noslide = $i + 1;
-                  $norep = false;
-                }} 
-              ?>
+                <?php 
+                  if ($dis == -1) {
+                    $first = false;
+                  } else{
+                    $first = $i > $dis ? false : true;
+                  }
+                  if (!$first && $norep) {
+                    $noslide = $i + 1;
+                    $norep = false;
+                  }} 
+                ?>
+              </div>
             </div>
             <?php if ($numIds > $noslide && $numIds > $dis) { ?>
               <a class="carousel-control-prev carousel-button" href="#clients_slider" role="button" data-slide="prev">

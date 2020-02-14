@@ -154,6 +154,7 @@
     }
 
     @media (min-width: 1200px) {
+
       &:last-of-type,
       &:nth-of-type(4n) {
         a {
@@ -180,6 +181,7 @@
     }
 
     @media (max-width: 1199px) and (min-width: 992px) {
+
       &:last-of-type,
       &:nth-of-type(3n) {
         a {
@@ -199,6 +201,7 @@
     }
 
     @media (max-width: 991px) and (min-width: 768px) {
+
       &:last-of-type,
       &:nth-of-type(2n) {
         a {
@@ -286,11 +289,21 @@
         width: 88%;
         display: flex;
 
+        .items-wrapper {
+          margin: auto;
+          width: 100%;
+          position: relative;
+          display: flex;
+          justify-content: center;
+        }
+
         .carousel-item {
-          max-width: 19%;
           margin: 0 1.9%;
           /* min-height: 200px; */
           width: 100%;
+          transition: all 0.2s ease;
+
+
 
           .inner-wrapper {
             display: flex;
@@ -298,8 +311,7 @@
             align-items: center;
 
             .image-wrapper {
-              /*  max-width: 19%;
-              margin: 0 1.9%; */
+
               min-height: 200px;
               width: 100%;
               background-size: contain;

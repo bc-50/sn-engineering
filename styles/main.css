@@ -687,12 +687,22 @@ footer {
         width: 88%;
         display: -webkit-box;
         display: flex; }
+        .clients .row .k-carousel .carousel-inner .items-wrapper,
+        .clients .row .carousel .carousel-inner .items-wrapper {
+          margin: auto;
+          width: 100%;
+          position: relative;
+          display: -webkit-box;
+          display: flex;
+          -webkit-box-pack: center;
+                  justify-content: center; }
         .clients .row .k-carousel .carousel-inner .carousel-item,
         .clients .row .carousel .carousel-inner .carousel-item {
-          max-width: 19%;
           margin: 0 1.9%;
           /* min-height: 200px; */
-          width: 100%; }
+          width: 100%;
+          -webkit-transition: all 0.2s ease;
+          transition: all 0.2s ease; }
           .clients .row .k-carousel .carousel-inner .carousel-item .inner-wrapper,
           .clients .row .carousel .carousel-inner .carousel-item .inner-wrapper {
             display: -webkit-box;
@@ -703,8 +713,6 @@ footer {
                     align-items: center; }
             .clients .row .k-carousel .carousel-inner .carousel-item .inner-wrapper .image-wrapper,
             .clients .row .carousel .carousel-inner .carousel-item .inner-wrapper .image-wrapper {
-              /*  max-width: 19%;
-              margin: 0 1.9%; */
               min-height: 200px;
               width: 100%;
               background-size: contain;

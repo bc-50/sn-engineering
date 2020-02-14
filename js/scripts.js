@@ -1,12 +1,11 @@
-$(function() {
+$(function () {
   var $hamburger = $(".hamburger");
-  $hamburger.on("click", function(e) {
+  $hamburger.on("click", function (e) {
     $hamburger.toggleClass("is-active");
     // Do something else, like open/close menu
   });
-  var check;
-  var start = true;
-  $(".carousel-button").click(function(e) {
+
+  $(".carousel-button").click(function (e) {
     e.preventDefault();
 
     if ($(e.target).hasClass("carousel-button")) {
@@ -14,18 +13,23 @@ $(function() {
     } else {
       var button = $(e.target).parents(".carousel-button");
     }
-
+    var wrapper = $(button).siblings('.carousel-inner').children('.items-wrapper');
     var slide = $(button).attr("href");
     var active = [];
     var all = [];
-    $(slide + " .carousel-item").each(function(i, e) {
+    $(slide + " .carousel-item").each(function (i, e) {
       all.push(e);
     });
-    all.forEach(function(i) {
+    all.forEach(function (i) {
       if ($(i).hasClass("active")) {
         active.push(i);
       }
     });
+
+    all.forEach(function (i) {
+      $(i).css('width', Math.ceil(100 / active.length) - 3.8 + '%');
+    });
+
     if ($(button).hasClass("carousel-control-next")) {
       var epos = all.length - 1,
         eapos = active.length - 1,
@@ -43,17 +47,12 @@ $(function() {
         efind = 0,
         op = ["<", ">"];
     }
-
-    if (start) {
-      check = active.length - 1;
-      start = false;
-    }
-
+    // console.log($(active[2]).position().left);
     var comp = {
-      "<": function(i, eaind) {
+      "<": function (i, eaind) {
         return i < eaind;
       },
-      ">": function(i, eaind) {
+      ">": function (i, eaind) {
         return i > eaind;
       }
     };
@@ -69,30 +68,37 @@ $(function() {
           break;
         }
       }
-      console.log(shifts);
       if (shifts == 0) {
         var next = eind;
       } else {
         active = shift(shifts, active);
         var next = all.findIndex(findEl) + 1 * pom;
-        console.log("henor");
       }
     } else {
       var next = all.findIndex(findEl) + 1 * pom;
     }
 
-    all.forEach(e => {
-      $(e).removeAttr("style");
-    });
-    var order = eapos + 1;
-    $(all[next]).css("order", order);
-    order += -1 * pom;
-    for (let i = eaind[1]; comp[op[0]](i, eaind[0]); i += -1 * pom) {
-      $(active[i]).css("order", order);
-      order += -1 * pom;
-    }
-    $(active[eaind[0]]).removeClass("active");
+
     $(all[next]).addClass("active");
+    setTimeout(() => {
+      $(active[eaind[0]]).removeClass("active");
+      all.forEach(e => {
+        $(e).removeAttr('style');
+      });
+      var order = eapos + 1;
+      $(all[next]).css("order", order);
+      order += -1 * pom;
+      for (let i = eaind[1]; comp[op[0]](i, eaind[0]); i += -1 * pom) {
+        $(active[i]).css("order", order);
+        order += -1 * pom;
+      }
+    }, 1000);
+
+
+
+
+
+    console.log($(active[2]).position().left);
 
     function findEl(find) {
       return find == active[efind];
