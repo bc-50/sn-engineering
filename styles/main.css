@@ -695,14 +695,17 @@ footer {
           display: -webkit-box;
           display: flex;
           -webkit-box-pack: center;
-                  justify-content: center; }
+                  justify-content: center;
+          /*  display: -webkit-box;
+          -webkit-box-pack: center; */ }
         .clients .row .k-carousel .carousel-inner .carousel-item,
         .clients .row .carousel .carousel-inner .carousel-item {
           margin: 0 1.9%;
           /* min-height: 200px; */
-          width: 100%;
           -webkit-transition: all 0.2s ease;
-          transition: all 0.2s ease; }
+          transition: all 0.2s ease;
+          /* flex-basis: 21.2%; */
+          flex-shrink: 0; }
           .clients .row .k-carousel .carousel-inner .carousel-item .inner-wrapper,
           .clients .row .carousel .carousel-inner .carousel-item .inner-wrapper {
             display: -webkit-box;

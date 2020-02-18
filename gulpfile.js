@@ -8,7 +8,7 @@ var gulp = require("gulp"),
   sass = require("gulp-sass"),
   minify = require("gulp-minifier");
 
-var url = "http://localhost/sn-engineering";
+var url = "http://localhost/sn";
 
 gulp.task("watch", function() {
   browserSync.init({

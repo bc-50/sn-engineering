@@ -295,16 +295,16 @@
           position: relative;
           display: flex;
           justify-content: center;
+         /*  display: -webkit-box;
+          -webkit-box-pack: center; */
         }
 
         .carousel-item {
           margin: 0 1.9%;
           /* min-height: 200px; */
-          width: 100%;
           transition: all 0.2s ease;
-
-
-
+          /* flex-basis: 21.2%; */
+          flex-shrink: 0;
           .inner-wrapper {
             display: flex;
             justify-content: center;
