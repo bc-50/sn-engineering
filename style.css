@@ -4,3 +4,7 @@
     Description: Custom theme
     */
 @import url("../brace-sn-engineering-theme/styles/main.min.css");
+
+.post-wrapper {
+    padding: 100px 0;
+}
